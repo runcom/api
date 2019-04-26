@@ -1,7 +1,6 @@
 package v1
 
 import (
-	ignv2_2types "github.com/coreos/ignition/config/v2_2/types"
 	corev1 "k8s.io/api/core/v1"
 	"k8s.io/apimachinery/pkg/api/resource"
 	metav1 "k8s.io/apimachinery/pkg/apis/meta/v1"
@@ -180,67 +179,6 @@ type ControllerConfigList struct {
 	Items []ControllerConfig `json:"items"`
 }
 
-// CustomResourceDefinition for MachineConfig
-// apiVersion: apiextensions.k8s.io/v1beta1
-// kind: CustomResourceDefinition
-// metadata:
-//   # name must match the spec fields below, and be in the form: <plural>.<group>
-//   name: machineconfigs.machineconfiguration.openshift.io
-// spec:
-//   # group name to use for REST API: /apis/<group>/<version>
-//   group: machineconfiguration.openshift.io
-//   # list of versions supported by this CustomResourceDefinition
-//   versions:
-//     - name: v1
-//       # Each version can be enabled/disabled by Served flag.
-//       served: true
-//       # One and only one version must be marked as the storage version.
-//       storage: true
-//   # either Namespaced or Cluster
-//   scope: Cluster
-//   names:
-//     # plural name to be used in the URL: /apis/<group>/<version>/<plural>
-//     plural: machineconfigs
-//     # singular name to be used as an alias on the CLI and for display
-//     singular: machineconfig
-//     # kind is normally the CamelCased singular type. Your resource manifests use this.
-//     kind: MachineConfig
-//     # shortNames allow shorter string to match your resource on the CLI
-//     shortNames:
-//     - mc
-
-// +genclient
-// +genclient:noStatus
-// +genclient:nonNamespaced
-// +k8s:deepcopy-gen=false
-
-// MachineConfig defines the configuration for a machine
-type MachineConfig struct {
-	metav1.TypeMeta   `json:",inline"`
-	metav1.ObjectMeta `json:"metadata,omitempty"`
-
-	Spec MachineConfigSpec `json:"spec"`
-}
-
-// MachineConfigSpec is the for MachineConfig
-type MachineConfigSpec struct {
-	// OSImageURL specifies the remote location that will be used to
-	// fetch the OS.
-	OSImageURL string `json:"osImageURL"`
-	// Config is a Ignition Config object.
-	Config ignv2_2types.Config `json:"config"`
-}
-
-// +k8s:deepcopy-gen:interfaces=k8s.io/apimachinery/pkg/runtime.Object
-
-// MachineConfigList is a list of MachineConfig resources
-type MachineConfigList struct {
-	metav1.TypeMeta `json:",inline"`
-	metav1.ListMeta `json:"metadata"`
-
-	Items []MachineConfig `json:"items"`
-}
-
 // CustomResourceDefinition for MachineConfigPool
 // apiVersion: apiextensions.k8s.io/v1beta1
 // kind: CustomResourceDefinition
@@ -333,7 +271,7 @@ type MachineConfigPoolStatus struct {
 // MachineConfigPoolStatusConfiguration stores the current configuration for the pool, and
 // optionally also stores the list of machineconfig objects used to generate the configuration.
 type MachineConfigPoolStatusConfiguration struct {
-	corev1.ObjectReference
+	corev1.ObjectReference `json:",inline"`
 
 	// source is the list of machineconfigs that were used to generate the single machineconfig object specified in `content`.
 	// +optional
