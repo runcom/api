@@ -31,6 +31,7 @@ servicecertsigner/v1alpha1 \
 template/v1 \
 user/v1 \
 webconsole/v1 \
+vendor/k8s.io/kubelet/config/v1beta1 \
 "
 API_PACKAGES="\
 github.com/openshift/api/apps/v1,\
