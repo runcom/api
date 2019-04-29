@@ -13,3 +13,8 @@ import:
   version: kubernetes-1.13.4
 - package: k8s.io/api
   version: kubernetes-1.13.4
+- package: k8s.io/kubelet
+  repo:    git@github.com:openshift/kubernetes-kubelet
+  version: origin-4.1-kubernetes-1.13.4
+  subpackages:
+  - config/v1beta1

@@ -1,5 +1,5 @@
-hash: 0774e6b638f20bd2ebf8d85eacf08a3420bc61b550edcfadefc6509b42a30657
-updated: 2019-04-01T11:16:38.87088471-04:00
+hash: eb1f20b5f921d1779198fbc4fdf1f79e735338276a1e15a86ee81c14b9c8de34
+updated: 2019-04-29T17:36:37.204802394+02:00
 imports:
 - name: github.com/davecgh/go-spew
   version: 782f4967f2dc4564575ca782fe2d04090b5faca8
@@ -117,12 +117,17 @@ imports:
   - pkg/watch
   - third_party/forked/golang/reflect
 - name: k8s.io/code-generator
-  version: 2bf47b06188b89cc41d68422aa52509f2cbb4cc8
+  version: b7d0f818cc1e1fc12b9acc529a1c27835609cdf4
   repo: git@github.com:openshift/kubernetes-code-generator
 - name: k8s.io/gengo
   version: 51747d6e00da1fc578d5a333a93bb2abcbce7a95
 - name: k8s.io/klog
   version: 8139d8cb77af419532b33dfa7dd09fbc5f1d344f
+- name: k8s.io/kubelet
+  version: e283b92471f6e196920a6a95ceac4d54d058b8b1
+  repo: git@github.com:openshift/kubernetes-kubelet
+  subpackages:
+  - config/v1beta1
 - name: sigs.k8s.io/yaml
   version: fd68e9863619f6ec2fdd8625fe1f02e7c877e480
 testImports: []
